@@ -1,2 +1,4 @@
 # SimpleCookieClickerAutomator
-This repo is one of my first ever projects that I decided to work on in my free time, it includes some features that will help automate the game of Cookie Clicker.
+-- This averages above 19 thousand WPM but can be optimized if you know what you are doing 
+-- just run the TypingAutomator.py and it will open a browser tab
+-- after the typing test is completed you can click on save score and sign in to your account so you can flex your 100th percentile score
