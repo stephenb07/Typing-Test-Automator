@@ -1,0 +1,32 @@
+# imports needed to run the program
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import pyautogui
+import time
+
+# defines Chrome as the main browser, adjust this to your desired browser
+driver = webdriver.Chrome()
+
+# Opens humanbenchmark website
+driver.get('https://humanbenchmark.com/tests/typing')
+
+# This waits until the program finds classes with the name "incomplete"
+wait = WebDriverWait(driver, 5)
+incomplete_elements = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'incomplete')))
+
+# This helps determine if the text is a space or not (otherwise it would skip the character and mess up the test)
+text_to_type = ''
+for element in incomplete_elements:
+    if element.get_attribute('outerHTML') == '<span class="incomplete"> </span>':
+        text_to_type += ' '  # Interpret '<span class="incomplete"> </span>' as space
+    else:
+        text_to_type += element.text  # Append the text content
+
+# Simulate typing the collected text using pyautogui
+pyautogui.write(text_to_type, interval=0)
+
+# this makes the driver close only after 100 seconds (This can be changed to your liking)
+time.sleep(100)  # Adjust this delay as needed
+driver.quit()
